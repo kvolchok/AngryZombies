@@ -9,6 +9,8 @@ public class TNT : MonoBehaviour
     [SerializeField]
     private AudioSource _explosionSound;
 
+    private ExplosionEffect _explosionEffect;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag(GlobalConstants.SKULL_TAG))
@@ -18,6 +20,7 @@ public class TNT : MonoBehaviour
 
         CreateExplosion();
         PlayExplosionSound();
+        _explosionEffect.Destroy();
         Destroy(gameObject);
     }
     
@@ -29,6 +32,7 @@ public class TNT : MonoBehaviour
     private void CreateExplosion()
     {
         Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
-        Instantiate(_explosionEffectPrefab, transform.position, Quaternion.identity);
+        var explosionEffect = Instantiate(_explosionEffectPrefab, transform.position, Quaternion.identity);
+        _explosionEffect = explosionEffect.GetComponent<ExplosionEffect>();
     }
 }
