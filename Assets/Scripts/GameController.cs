@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     private Rigidbody2D _skull;
     
     [SerializeField]
-    private float _minSkullVelocity = 0.05f;
+    private float _minSkullVelocity = 0.1f;
     
     [SerializeField]
     private AudioClip _stretchingRubber;
@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
             return;
         }
 
-        if (Input.GetMouseButtonDown(0) && !_isButtonPressed)
+        if (Input.GetMouseButtonDown(0) && !_isButtonPressed && !_isSkullMoving)
         {
             AudioSource.PlayClipAtPoint(_stretchingRubber, transform.position);
             _isButtonPressed = true;
@@ -87,11 +87,11 @@ public class GameController : MonoBehaviour
     {
         _isSkullMoving = false;
         
-        _skull.transform.position = _center;
         _skull.freezeRotation = true;
         _skull.transform.rotation = Quaternion.identity;
         _skull.freezeRotation = false;
         _skull.velocity = Vector2.zero;
+        _skull.transform.position = _center;
         
         _skull.isKinematic = true;
     }
