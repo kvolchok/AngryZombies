@@ -19,9 +19,9 @@ public class EnemiesCounter : MonoBehaviour
     }
 
     [UsedImplicitly]
-    public void AddScore()
+    public void UpdateCounter()
     {
-        _counter--;
+        _counter = Mathf.Max(--_counter, 0);
 
         _counterLabel.text = _counter.ToString();
 
