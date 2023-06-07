@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class EnemiesCounter : MonoBehaviour
 {
     [SerializeField]
-    private UnityEvent _showWinScreen;
+    private UnityEvent _onAllEnemiesDied;
     
     [SerializeField]
     private TextMeshProUGUI _counterLabel;
@@ -27,7 +27,7 @@ public class EnemiesCounter : MonoBehaviour
 
         if (_counter == 0)
         {
-            _showWinScreen.Invoke();
+            _onAllEnemiesDied.Invoke();
         }
     }
 }

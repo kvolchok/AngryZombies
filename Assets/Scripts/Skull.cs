@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class Skull : MonoBehaviour
 {
     [SerializeField]
-    private UnityEvent _restartGame;
+    private UnityEvent _outOfMapEvent;
     
     [SerializeField]
     private AudioClip _hittingStone;
@@ -18,7 +18,7 @@ public class Skull : MonoBehaviour
 
         if (collision.gameObject.CompareTag(GlobalConstants.OUT_OF_MAP_TAG))
         {
-            _restartGame.Invoke();
+            _outOfMapEvent.Invoke();
         }
     }
 }
